@@ -27,6 +27,20 @@ class ScreenRecorder {
         this.openButton.addEventListener("click", this.openVideoHandler.bind(this));
     }
 
+    startVideoButtonHandler () {
+        this.startButton.innerText = "Recording...";
+        this.startButton.setAttribute("disabled", "true");
+        this.stopButton.removeAttribute("disabled");
+        this.openButton.setAttribute("disabled", "true");
+    }
+
+    stopVideoButtonHandler() {
+        this.stopButton.setAttribute("disabled", "true");
+        this.startButton.innerText = "Start";
+        this.startButton.removeAttribute("disabled");
+        this.openButton.removeAttribute("disabled");
+    }
+
     subscribeToIPC() {
         ipcRenderer.on("event-select-video-source", this.setVideoSource.bind(this));
         ipcRenderer.on("event-play-video-request", this.playVideoHandler.bind(this));
@@ -79,10 +93,7 @@ class ScreenRecorder {
         this.mediaRecorder.ondataavailable = this.handleDataAvailable.bind(this);
         this.mediaRecorder.onstop = this.saveVideoHandler.bind(this);
         this.mediaRecorder.start();
-
-        this.startButton.innerText = "Recording...";
-        this.startButton.setAttribute("disabled", "true");
-        this.stopButton.removeAttribute("disabled");
+        this.startVideoButtonHandler();
     }
 
     handleDataAvailable(e) {
@@ -98,10 +109,8 @@ class ScreenRecorder {
             type: "video/webm; codecs=vp9"
         });
 
-        this.stopButton.setAttribute("disabled", "true");
-
-        this.startButton.innerText = "Start";
-        this.startButton.removeAttribute("disabled");
+        this.stopVideoButtonHandler();
+        this.video.srcObject = null;
 
         const buffer = Buffer.from(await blob.arrayBuffer());
 
