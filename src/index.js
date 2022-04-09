@@ -20,7 +20,7 @@ app.on("ready", async () => {
 
     mainWindow.loadFile(path.join(__dirname, "index.html"));
 
-    mainWindow.webContents.openDevTools();
+    // mainWindow.webContents.openDevTools();
 
     ipcMain.on("event-require-video-source-popup", showViewSourcePopup);
     ipcMain.on("event-save-video-request", saveVideoRequests);
