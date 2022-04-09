@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Screen Recorder</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"/>
+    <link rel="stylesheet" href="index.css"/>
+    <script defer src="ScreenRecorder.js"></script>
+</head>
+<body>
+
+<div class="video-wrapper">
+    <video id="video"></video>
+</div>
+
+
+<div class="center">
+    <button id="startButton" class="button is-primary">Start</button>
+    <button id="stopButton" class="button is-secondary" disabled>Stop</button>
+    <button id="openButton" class="button is-warning">Open</button>
+</div>
+<hr>
+<div class="center">
+    <button  id="videoSelectButton" class="button is-text">
+        Choose a Video Source
+    </button>
+</div>
+
+</body>
+</html>
